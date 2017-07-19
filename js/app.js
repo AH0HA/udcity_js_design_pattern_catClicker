@@ -22,7 +22,7 @@ var initCats = [
         {
             clickCount : 0,
             name : 'Scaredy',
-          nickName : 'Scaredy2',
+          nickNames : ['Scaredy2','scarely3'],
             catLevel : 'newBorn',
           
             imgSrc : 'http://1.bp.blogspot.com/-zAWnDj_hEeE/UjWq6heqF-I/AAAAAAAAB_8/iThTIziz7VA/s1600/cat.jpg',
@@ -42,7 +42,7 @@ var initCats = [
             clickCount : 0,
             
             name : 'Sleepy',
-            nickNames : ['Sleepy2',  'sleepy2a'],        
+            nickNames : ['Sleepy2',  'sleepy3a'],        
             catLevel : 'newBorn',
           
           imgSrc : 'https://i.ytimg.com/vi/aBSzB6qxisQ/0.jpg',
@@ -63,18 +63,18 @@ var cat = function(data){
   //this.imageAttribution = ko.observable('https://www.flickr.com/photos/onesharp/9648464288');
     this.catLevel = ko.computed(function(){
       var catLevelx;
-      console.log('yyyyyy');
+      //console.log('yyyyyy');
       var cnt = this.clickCount();
-      console.log(cnt);
-      console.log('zzzzzz');
+      //console.log(cnt);
+      //console.log('zzzzzz');
    
       if ( cnt  <10 && cnt >=0){
         catLevelx = 'newBorn';
-        console.log('x');
+        //console.log('x');
         //return catLevelx;
       }else if ( cnt < 20){
         catLevelx = 'inFant';
-        console.log('xx');
+        //console.log('xx');
         //return catLevelx;
       }else if (cnt<30){
         catLevelx  = 'child';
@@ -83,7 +83,7 @@ var cat = function(data){
       }else //if(catLevelx>=30)
       {
         catLevelx='ninja3';
-        console.log('xxxx');
+        //console.log('xxxx');
         //return catLevelx;
       }
       return catLevelx;
@@ -96,8 +96,10 @@ var viewModel = function() {
     var self = this;
     //this.currentCat = ko.observable(new cat({}));
     this.catList = ko.observableArray([]);
+    this.catNameList = ko.observableArray([]);
     initCats.forEach(function(catItem){
         self.catList.push(new cat(catItem));
+        //self.catNameList.push(catItem.name);
     });
 
     this.currentCat = ko.observable(this.catList()[0]);
@@ -105,6 +107,13 @@ var viewModel = function() {
   this.incrementCounter = function(){
     self.currentCat().clickCount(self.currentCat().clickCount()+1);
   };  
+
+  this.switchCat = function(theCat) {
+             //self.currentCat = ko.observable(self.catList()[3]);
+             console.log(theCat.name);
+             self.currentCat(theCat);
+  }  
+
 };
 ko.applyBindings(new viewModel());
   /*

@@ -8,7 +8,9 @@
     <title>Cat Clicker</title>
 </head>
 <body>
-    <ul id="cat-list"></
+
+
+   
     <!--div id="cat" data-bind="foreach cats"-->
     <div data-bind="with: currentCat">
       
@@ -18,9 +20,8 @@
       <!--h4 type="text" data-bind="text: nickName"></h4-->
       <div data-bind="text: clickCount"></div>
         <img src="" alt="cute cat" data-bind="click: $parent.incrementCounter, attr:{src: imgSrc}">
-
     </div>
-      <table>
+    <table id="cat_nick_name">
     <thead>
         <tr><th>nickName</th>
     </thead>
@@ -30,6 +31,16 @@
         </tr>
     </tbody>
     </table>
+
+    <ul data-bind="foreach: catList">
+        <li>
+            <span data-bind="text: name, click:$parent.switchCat"></span>
+        </li>
+    </ul>    
+
+
+
+
     <!--script src="js/lib/knockout-3.2.0.js"></script-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
  <script src="js/app.js"></script>    
